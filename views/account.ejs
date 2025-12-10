@@ -1,0 +1,29 @@
+<% layout('layout') -%>
+<section class="row">
+  <div class="col-md-6">
+    <h4>Your Profile</h4>
+    <p><strong>Name:</strong> <%= user.name %></p>
+    <p><strong>Email:</strong> <%= user.email %></p>
+    <p><strong>Role:</strong> <%= user.role %></p>
+  </div>
+  <div class="col-md-6">
+    <h4>Your Favorites</h4>
+    <% if (!products || products.length === 0) { %>
+      <p>No favorites yet.</p>
+    <% } else { %>
+      <div class="row">
+        <% products.forEach(p => { %>
+          <div class="col-6 mb-3">
+            <div class="card h-100">
+              <img src="<%= p.imageUrl %>" class="card-img-top" alt="<%= p.name %>">
+              <div class="card-body">
+                <h6 class="card-title"><%= p.name %></h6>
+                <p class="card-text">$<%= p.price.toFixed(2) %></p>
+              </div>
+            </div>
+          </div>
+        <% }) %>
+      </div>
+    <% } %>
+  </div>
+</section>
