@@ -1,0 +1,25 @@
+<% layout('layout') -%>
+<h3>Navigation Menu</h3>
+<div class="row">
+  <div class="col-md-5">
+    <h5>Add Menu Item</h5>
+    <form method="post" action="/admin/navigation" class="border rounded p-3">
+      <div class="mb-2"><label>Label</label><input name="label" class="form-control" required></div>
+      <div class="mb-2"><label>URL</label><input name="url" class="form-control" required></div>
+      <button class="btn btn-success">Add</button>
+    </form>
+  </div>
+  <div class="col-md-7">
+    <h5>Current Items</h5>
+    <ul class="list-group">
+      <% nav.forEach(item => { %>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          <div><strong><%= item.label %></strong> <small class="text-muted"><%= item.url %></small></div>
+          <form method="post" action="/admin/navigation/<%= item.id %>/delete" onsubmit="return confirm('Delete menu item?')">
+            <button class="btn btn-danger btn-sm">Delete</button>
+          </form>
+        </li>
+      <% }) %>
+    </ul>
+  </div>
+</div>
