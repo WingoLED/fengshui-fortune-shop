@@ -1,0 +1,45 @@
+<% layout('layout') -%>
+<h3>Tips & Content</h3>
+<div class="row">
+  <div class="col-md-5">
+    <h5>Add Tip</h5>
+    <form method="post" action="/admin/tips" class="border rounded p-3">
+      <div class="mb-2">
+        <label>Title</label>
+        <input name="title" class="form-control" required>
+      </div>
+      <div class="mb-2">
+        <label>Date (YYYY-MM-DD)</label>
+        <input name="date" type="date" class="form-control" required>
+      </div>
+      <div class="mb-2">
+        <label>Body</label>
+        <textarea name="body" class="form-control" rows="3"></textarea>
+      </div>
+      <div class="mb-2">
+        <label>Video URL (optional)</label>
+        <input name="videoUrl" class="form-control" placeholder="YouTube embed URL">
+      </div>
+      <button class="btn btn-success">Create</button>
+    </form>
+  </div>
+  <div class="col-md-7">
+    <h5>Manage Tips</h5>
+    <% tips.forEach(t => { %>
+      <div class="border rounded p-2 mb-2">
+        <form method="post" action="/admin/tips/<%= t.id %>/update" class="row g-2">
+          <div class="col-md-5"><input name="title" class="form-control" value="<%= t.title %>"></div>
+          <div class="col-md-3"><input name="date" type="date" class="form-control" value="<%= t.date %>"></div>
+          <div class="col-md-4"><input name="videoUrl" class="form-control" value="<%= t.videoUrl %>"></div>
+          <div class="col-12"><textarea name="body" class="form-control" rows="2"><%= t.body %></textarea></div>
+          <div class="col-12 d-flex justify-content-between">
+            <button class="btn btn-primary btn-sm">Update</button>
+            <form method="post" action="/admin/tips/<%= t.id %>/delete" onsubmit="return confirm('Delete tip?')">
+              <button class="btn btn-danger btn-sm">Delete</button>
+            </form>
+          </div>
+        </form>
+      </div>
+    <% }) %>
+  </div>
+</div>
