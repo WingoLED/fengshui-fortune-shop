@@ -1,0 +1,35 @@
+<% layout('layout') -%>
+<h2>Book a Consultation</h2>
+<form method="post" action="/book" class="row g-3">
+  <div class="col-md-6">
+    <label class="form-label">Name</label>
+    <input name="name" class="form-control" required>
+  </div>
+  <div class="col-md-6">
+    <label class="form-label">Email</label>
+    <input name="email" type="email" class="form-control" required>
+  </div>
+  <div class="col-md-4">
+    <label class="form-label">Service</label>
+    <select name="service" class="form-select" required>
+      <option value="Feng Shui Ornaments Design">Feng Shui Ornaments Design</option>
+      <option value="Personal Guidance">Personal Guidance</option>
+      <option value="Household Feng Shui">Household Feng Shui</option>
+    </select>
+  </div>
+  <div class="col-md-4">
+    <label class="form-label">Date</label>
+    <input name="date" type="date" class="form-control" required>
+  </div>
+  <div class="col-md-4">
+    <label class="form-label">Time</label>
+    <input name="time" type="time" class="form-control" required>
+  </div>
+  <div class="col-12">
+    <label class="form-label">Message</label>
+    <textarea name="message" class="form-control" rows="4" placeholder="Share your goals, space details, or questions."></textarea>
+  </div>
+  <div class="col-12">
+    <button class="btn btn-primary">Submit Booking</button>
+  </div>
+</form>
