@@ -1,0 +1,50 @@
+<% layout('layout') -%>
+<h3>Products & Inventory</h3>
+<div class="row">
+  <div class="col-md-6">
+    <h5>Add Product</h5>
+    <form method="post" action="/admin/products" class="border rounded p-3">
+      <div class="mb-2">
+        <label>Name</label>
+        <input name="name" class="form-control" required>
+      </div>
+      <div class="mb-2">
+        <label>Description</label>
+        <textarea name="description" class="form-control" rows="2"></textarea>
+      </div>
+      <div class="mb-2">
+        <label>Price</label>
+        <input name="price" type="number" step="0.01" class="form-control" required>
+      </div>
+      <div class="mb-2">
+        <label>Stock</label>
+        <input name="stock" type="number" class="form-control" required>
+      </div>
+      <div class="mb-2">
+        <label>Image URL</label>
+        <input name="imageUrl" class="form-control">
+      </div>
+      <button class="btn btn-success">Create</button>
+    </form>
+  </div>
+  <div class="col-md-6">
+    <h5>Manage Products</h5>
+    <% products.forEach(p => { %>
+      <div class="border rounded p-2 mb-2">
+        <form method="post" action="/admin/products/<%= p.id %>/update" class="row g-2">
+          <div class="col-md-6"><input name="name" class="form-control" value="<%= p.name %>"></div>
+          <div class="col-md-3"><input name="price" type="number" step="0.01" class="form-control" value="<%= p.price %>"></div>
+          <div class="col-md-3"><input name="stock" type="number" class="form-control" value="<%= p.stock %>"></div>
+          <div class="col-12"><textarea name="description" class="form-control" rows="2"><%= p.description %></textarea></div>
+          <div class="col-12"><input name="imageUrl" class="form-control" value="<%= p.imageUrl %>"></div>
+          <div class="col-12 d-flex justify-content-between">
+            <button class="btn btn-primary btn-sm">Update</button>
+            <form method="post" action="/admin/products/<%= p.id %>/delete" onsubmit="return confirm('Delete product?')">
+              <button class="btn btn-danger btn-sm">Delete</button>
+            </form>
+          </div>
+        </form>
+      </div>
+    <% }) %>
+  </div>
+</div>
