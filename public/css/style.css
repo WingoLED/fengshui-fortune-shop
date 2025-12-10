@@ -1,0 +1,12 @@
+body { background: #f8faf9; }
+.site-header { background: #0f5132; color: #fff; }
+.site-header .nav-main { background: #0b3d2e; }
+.site-header .nav-link { color: #e6fff4; }
+.site-header .nav-link:hover { color: #ffffff; }
+.logo-text { font-weight: 700; letter-spacing: 0.3px; }
+.domain { font-size: 12px; color: #e0fff3; }
+.hero-inner { background: linear-gradient(135deg, #e9f7ef 0%, #d1f2eb 100%); }
+.site-footer { background: #0b3d2e; color: #e6fff4; }
+.site-footer a { color: #b7ffea; }
+.card img { object-fit: cover; height: 200px; }
+.prose p { white-space: pre-wrap; }
