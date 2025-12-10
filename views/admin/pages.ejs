@@ -1,0 +1,32 @@
+<% layout('layout') -%>
+<h3>Pages</h3>
+<div class="row">
+  <div class="col-md-5">
+    <h5>Create Page</h5>
+    <form method="post" action="/admin/pages" class="border rounded p-3">
+      <div class="mb-2"><label>Slug (e.g., about-us)</label><input name="slug" class="form-control" required></div>
+      <div class="mb-2"><label>Title</label><input name="title" class="form-control" required></div>
+      <div class="mb-2"><label>Body</label><textarea name="body" class="form-control" rows="4"></textarea></div>
+      <button class="btn btn-success">Create</button>
+    </form>
+  </div>
+  <div class="col-md-7">
+    <h5>Manage Pages</h5>
+    <% pages.forEach(p => { %>
+      <div class="border rounded p-2 mb-2">
+        <form method="post" action="/admin/pages/<%= p.id %>/update" class="row g-2">
+          <div class="col-md-4"><input name="slug" class="form-control" value="<%= p.slug %>"></div>
+          <div class="col-md-4"><input name="title" class="form-control" value="<%= p.title %>"></div>
+          <div class="col-md-4 d-flex align-items-center justify-content-end">
+            <button class="btn btn-primary btn-sm me-2">Update</button>
+            <form method="post" action="/admin/pages/<%= p.id %>/delete" onsubmit="return confirm('Delete page?')">
+              <button class="btn btn-danger btn-sm">Delete</button>
+            </form>
+          </div>
+          <div class="col-12"><textarea name="body" class="form-control" rows="3"><%= p.body %></textarea></div>
+        </form>
+        <div><small>Public URL: <a href="/p/<%= p.slug %>" target="_blank">/p/<%= p.slug %></a></small></div>
+      </div>
+    <% }) %>
+  </div>
+</div>
