@@ -1,0 +1,20 @@
+<% layout('layout') -%>
+<h3>System Settings</h3>
+<form method="post" action="/admin/settings" class="row g-3">
+  <div class="col-md-6">
+    <h5>Contact & Social</h5>
+    <div class="mb-2"><label>Contact Address</label><input name="contactAddress" class="form-control" value="<%= settings.contactAddress || '' %>"></div>
+    <div class="mb-2"><label>Contact Email</label><input name="contactEmail" class="form-control" value="<%= settings.contactEmail || '' %>"></div>
+    <div class="mb-2"><label>Facebook</label><input name="socialFacebook" class="form-control" value="<%= settings.socialFacebook || '' %>"></div>
+    <div class="mb-2"><label>Instagram</label><input name="socialInstagram" class="form-control" value="<%= settings.socialInstagram || '' %>"></div>
+    <div class="mb-2"><label>Pinterest</label><input name="socialPinterest" class="form-control" value="<%= settings.socialPinterest || '' %>"></div>
+  </div>
+  <div class="col-md-6">
+    <h5>Email Server (SMTP)</h5>
+    <div class="mb-2"><label>SMTP Host</label><input name="smtpHost" class="form-control" value="<%= settings.smtpHost || '' %>"></div>
+    <div class="mb-2"><label>SMTP Port</label><input name="smtpPort" class="form-control" value="<%= settings.smtpPort || '587' %>"></div>
+    <div class="mb-2"><label>SMTP User</label><input name="smtpUser" class="form-control" value="<%= settings.smtpUser || '' %>"></div>
+    <div class="mb-2"><label>SMTP Pass</label><input name="smtpPass" type="password" class="form-control" value="<%= settings.smtpPass || '' %>"></div>
+  </div>
+  <div class="col-12"><button class="btn btn-success">Save Settings</button></div>
+</form>
