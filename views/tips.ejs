@@ -1,0 +1,15 @@
+<% layout('layout') -%>
+<h2>Feng Shui Tips</h2>
+<div class="list-group">
+  <% tips.forEach(t => { %>
+    <div class="list-group-item">
+      <h5><%= t.title %> <small class="text-muted">(<%= t.date %>)</small></h5>
+      <p><%= t.body %></p>
+      <% if (t.videoUrl) { %>
+        <div class="ratio ratio-16x9">
+          <iframe src="<%= t.videoUrl %>" title="Feng Shui Tip Video" allowfullscreen></iframe>
+        </div>
+      <% } %>
+    </div>
+  <% }) %>
+</div>
