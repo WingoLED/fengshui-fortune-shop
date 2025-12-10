@@ -1,0 +1,55 @@
+<% layout('layout') -%>
+<h3>User Management</h3>
+<p class="text-muted">Admin: ALL permissions. Owner: same as Admin except cannot manage Admin accounts. Editor: same as Owner except no User Management. Subscriber: front-end user with profile/favorites.</p>
+<div class="row">
+  <div class="col-md-5">
+    <h5>Create User</h5>
+    <form method="post" action="/admin/users" class="border rounded p-3">
+      <div class="mb-2"><label>Name</label><input name="name" class="form-control" required></div>
+      <div class="mb-2"><label>Email</label><input name="email" type="email" class="form-control" required></div>
+      <div class="mb-2"><label>Password</label><input name="password" type="text" class="form-control" required></div>
+      <div class="mb-2">
+        <label>Role</label>
+        <select name="role" class="form-select">
+          <option value="subscriber">Subscriber</option>
+          <option value="editor">Editor</option>
+          <option value="owner">Owner</option>
+          <option value="admin">Admin</option>
+        </select>
+      </div>
+      <button class="btn btn-success">Create</button>
+    </form>
+  </div>
+  <div class="col-md-7">
+    <h5>Users</h5>
+    <table class="table table-sm">
+      <thead><tr><th>ID</th><th>Name</th><th>Email</th><th>Role</th><th>Created</th><th>Actions</th></tr></thead>
+      <tbody>
+        <% users.forEach(u => { %>
+          <tr>
+            <form method="post" action="/admin/users/<%= u.id %>/update">
+              <td><%= u.id %></td>
+              <td><input name="name" class="form-control form-control-sm" value="<%= u.name || '' %>"></td>
+              <td><input name="email" class="form-control form-control-sm" value="<%= u.email %>"></td>
+              <td>
+                <select name="role" class="form-select form-select-sm">
+                  <option value="subscriber" <%= u.role==='subscriber'?'selected':'' %>>Subscriber</option>
+                  <option value="editor" <%= u.role==='editor'?'selected':'' %>>Editor</option>
+                  <option value="owner" <%= u.role==='owner'?'selected':'' %>>Owner</option>
+                  <option value="admin" <%= u.role==='admin'?'selected':'' %>>Admin</option>
+                </select>
+              </td>
+              <td><small><%= new Date(u.createdAt).toLocaleString() %></small></td>
+              <td class="d-flex">
+                <button class="btn btn-primary btn-sm me-2">Save</button>
+            </form>
+                <form method="post" action="/admin/users/<%= u.id %>/delete" onsubmit="return confirm('Delete user?')">
+                  <button class="btn btn-danger btn-sm">Delete</button>
+                </form>
+              </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+</div>
